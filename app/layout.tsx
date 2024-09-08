@@ -1,13 +1,16 @@
 import { Toaster} from "sonner"
+import type { Metadata } from "next";
+
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ModalProvider } from "@/components/providers/modal-providers";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
+
+import localFont from "next/font/local";
 import "./globals.css";
 
 
-import type { Metadata } from "next";
-import localFont from "next/font/local";
 
 
-import { ConvexClientProvider } from "@/components/providers/convex-provider";
 
 
 const geistSans = localFont({
@@ -59,6 +62,7 @@ export default function RootLayout({
           storageKey="botion-theme-2"
         >
           <Toaster position="bottom-center"/>
+          <ModalProvider />
           {children}
         </ThemeProvider>
       </ConvexClientProvider>
