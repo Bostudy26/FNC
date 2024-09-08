@@ -2,7 +2,7 @@
 
 import { useMediaQuery } from "usehooks-ts";
 import { ElementRef, useEffect, useRef, useState } from "react";
-import { ChevronsLeft, MenuIcon, PlusCircle } from "lucide-react";
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMutation, useQuery } from "convex/react";
 
@@ -136,6 +136,17 @@ const Navigation = () => {
                 </div>
                 <div>
                     <UserItem />
+                    <Item 
+                      label="Search"
+                      icon={Search}
+                      isSearch
+                      onClick={() => {}}
+                    />
+                    <Item 
+                      label="Settings"
+                      icon={Settings}
+                      onClick={() => {}}
+                    />
                     <Item 
                       onClick={handleCreate}
                       label="New Page"
