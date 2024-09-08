@@ -10,6 +10,10 @@ import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
+import { 
+    DropdownMenu,
+    DropdownMenuSeparator 
+} from "@/components/ui/dropdown-menu";
 
 
 
@@ -56,7 +60,7 @@ const Item = ({
             if(!expanded){
                 onExpand?.();
             }
-            router.push(`/documents/${documentId}`);
+            // router.push(`/documents/${documentId}`);
         });
 
         toast.promise(promise , {
@@ -108,6 +112,9 @@ const Item = ({
         )}
         {!!id && (
             <div className="ml-auto flex items-center gap-x-2">
+                <DropdownMenu>
+
+                </DropdownMenu>
                 <div
                     role="button" 
                     onClick={OnCreate}
