@@ -2,7 +2,7 @@
 
 import { useMediaQuery } from "usehooks-ts";
 import { ElementRef, useEffect, useRef, useState } from "react";
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMutation} from "convex/react";
 
@@ -155,6 +155,11 @@ const Navigation = () => {
                 </div>
                 <div className="mt-4">
                     <DocumentList />
+                    <Item
+                      onClick={handleCreate}
+                      icon={Plus}
+                      label="Add a Page"
+                    />
                 </div>
                 <div
                     onMouseDown={handleMouseDown}
