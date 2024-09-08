@@ -4,7 +4,6 @@
 import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
 import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
-import { isSea } from "node:sea";
 
 interface ItemProps {
     id?: Id<"documents">
@@ -70,7 +69,21 @@ const Item = ({
             </kbd>
         )}
     </div>
-     );
+    );
 }
  
+Item.Skeleton = function ItemSkeleton({level} : {level? : number}) {
+    return (
+        <div
+            style={
+                {
+                    paddingLeft: level ? `${(level * 12) + 25}px` : "12px"
+                }
+            }
+        >
+
+        </div>
+    )
+}
+
 export default Item;
