@@ -9,6 +9,7 @@ import { Search, Trash, Undo } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import { ConfirmModal } from "@/components/modals/confirm-modal";
 
 const TrashBox = () => {
     const router = useRouter();
@@ -41,8 +42,8 @@ const TrashBox = () => {
           });
     };
 
-    const handleRemove = async (document: Doc<'documents'>) => {
-        const promise = remove({ id: document._id });
+    const onRemove = async (documentId: Id<'documents'>) => {
+        const promise = remove({ id: documentId });
     
         toast.promise(promise, {
           loading: 'Deleting note...',
@@ -50,7 +51,7 @@ const TrashBox = () => {
           error: 'Failed to delete note.'
         });
     
-        if (params.documentId === document._id) {
+        if (params.documentId === documentId) {
           router.push('/documents');
         }
     };
@@ -96,12 +97,14 @@ const TrashBox = () => {
                             >
                                 <Undo className="h-4 w-4 text-muted-foreground" />
                         </div>
-                        <div
-                            role="button"
-                            className="rounded-sm p-2 hover:bg-neutral-200"
-                        >
-                            <Trash className="h-4 w-4 text-muted-foreground"/>
-                        </div>
+                        <ConfirmModal onConfirm={() => onRemove(document._id)}>
+                            <div
+                                role="button"
+                                className="rounded-sm p-2 hover:bg-neutral-200"
+                            >
+                                <Trash className="h-4 w-4 text-muted-foreground"/>
+                            </div>
+                        </ConfirmModal>
                      </div>
                     </div>
                 ))}
