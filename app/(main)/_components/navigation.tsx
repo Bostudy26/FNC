@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useSearch } from "@/hooks/use-search";
 
 
 import UserItem from "./user-item";
@@ -25,16 +26,17 @@ import TrashBox from "./trash-box";
 
 
 const Navigation = () => {
-    const pathname = usePathname();
-    const isMobile = useMediaQuery("(max-width: 768px)")
-    const create = useMutation(api.documents.create);
+  const search = useSearch();
+  const pathname = usePathname();
+  const isMobile = useMediaQuery("(max-width: 768px)")
+  const create = useMutation(api.documents.create);
 
-    const isResizingRef = useRef(false)
-    const sidebarRef = useRef<ElementRef<"aside">>(null);
-    const navbarRef = useRef<ElementRef<"div">>(null);
+  const isResizingRef = useRef(false)
+  const sidebarRef = useRef<ElementRef<"aside">>(null);
+  const navbarRef = useRef<ElementRef<"div">>(null);
 
-    const [isRestting, setIsResetting] = useState(false);
-    const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const [isRestting, setIsResetting] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
     useEffect(() => {
         if (isMobile) {
@@ -148,7 +150,7 @@ const Navigation = () => {
                       label="Search"
                       icon={Search}
                       isSearch
-                      onClick={() => {}}
+                      onClick={search.onOpen}
                     />
                     <Item 
                       label="Settings"
