@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ModalProvider } from "@/components/providers/modal-providers";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { EdgeStoreProvider } from '../lib/edgestore';
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -54,19 +55,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <ConvexClientProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="botion-theme-2"
-        >
-          <Toaster position="bottom-center"/>
-          <ModalProvider />
-          {children}
-        </ThemeProvider>
+        <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="botion-theme-2"
+            >
+              <Toaster position="bottom-center"/>
+              <ModalProvider />
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>
       </ConvexClientProvider>
-
       </body>
     </html>
   );
